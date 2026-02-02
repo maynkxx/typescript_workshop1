@@ -15,3 +15,18 @@ Express
 TypeScript
 
 ts-node-dev
+
+Project Structure
+src/
+│
+├── app.ts              # Express app setup
+├── server.ts           # Server entry point
+│
+├── config/             # Environment & configuration files
+├── controllers/        # Handles incoming HTTP requests
+├── routes/             # API route definitions
+├── services/           # Business logic layer
+├── repositories/       # Data access layer
+├── models/             # Database models
+├── middlewares/        # Custom Express middlewares
+├── utils/              # Helper and utility functions
