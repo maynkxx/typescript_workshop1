@@ -30,3 +30,5 @@ src/
 ├── models/            
 ├── middlewares/        
 ├── utils/              
+
+A backend REST API built using Node.js and TypeScript to manage car rentals with full CRUD functionality and clean OOP architecture.
