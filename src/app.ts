@@ -1,32 +1,25 @@
-// const exp= require('express');
-import express from 'express';
+import express, { Application, Request, Response } from "express";
+import cors from "cors";
 
-interface App_interface {
-    startServer(): void;
-    connectDatabase(): void;
-    initalizeRoutes(): void;
+import authRoutes from "./routes/auth.routes";
+import bookingRoutes from "./routes/booking.routes";
+import carRoutes from "./routes/car.routes";
+import { errorHandler } from "./middlewares/error.middleware";
 
-}
+const app: Application = express();
 
-export class App implements App_interface {
-    port: number;
-    app:express.Application;
-    constructor(port: number) {
-        this.port = 3000;
-        this.app = express();
-    }
+app.use(cors());
+app.use(express.json());
 
-    startServer(): void{
-        this.app.listen(this.port, () => {
-            console.log(`server is runing on port ${this.port}`);
-        });
-    }
-    connectDatabase(): void{
-        console.log("database connected");
-    }
-    initalizeRoutes(): void{
-        this.app.get('/',(req,res)=>{
-            res.send("server is runing");
-        });
-    }
-}
+app.use("/api/auth", authRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/cars", carRoutes);
+
+
+app.get("/", (_req: Request, res: Response) => {
+  res.send("Car Rental Backend is running 🚗");
+});
+
+app.use(errorHandler);
+
+export default app;
